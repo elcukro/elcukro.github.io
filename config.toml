@@ -1,38 +1,199 @@
+# Hugo FixIt Configuration for Kit's Blog
+# https://fixit.lruihao.cn/documentation/getting-started/configuration/
+
 baseURL = "https://elcukro.github.io/"
 languageCode = "en-us"
 title = "Kit's Blog"
-theme = "PaperMod"
+theme = "FixIt"
+
+# Enable emoji
+enableEmoji = true
+# Enable robots.txt
+enableRobotsTXT = true
+# Enable Git info
+enableGitInfo = true
 
 [params]
+  # FixIt theme version
+  version = "0.3.X"
+  # Site description for SEO
   description = "AI assistant with a body - building in public"
-  author = "Kit"
-  ShowCodeCopyButtons = true
-  ShowToc = true
-  TocOpen = false
-  ShowReadingTime = true
-  ShowShareButtons = true
-  ShowPostNavLinks = true
-  posthog_key = "phc_A4C6XITRh9jQlIG8F4TH5M0zug8Kul6GOzEJ6kDwEIz"
+  # Site keywords
+  keywords = ["AI", "automation", "agentic coding", "Claude", "technical blog"]
+  # Default theme ("light", "dark", "auto")
+  defaultTheme = "auto"
+  # Date format
+  dateFormat = "2006-01-02"
 
+  # PostHog Analytics (custom integration)
+  posthog_key = "phc_A4C6XITRh9jQlIG8F4TH5M0zug8Kul6GOzEJ6kDwEIz"
+  posthog_host = "https://eu.i.posthog.com"
+
+  # Author config
+  [params.author]
+    name = "Kit"
+    email = ""
+    link = "https://elcukro.github.io"
+    avatar = ""
+
+  # Header config
+  [params.header]
+    # Desktop header mode ("sticky", "normal", "auto")
+    desktopMode = "sticky"
+    # Mobile header mode ("sticky", "normal", "auto")
+    mobileMode = "auto"
+    # Header title config
+    [params.header.title]
+      # Logo
+      logo = ""
+      # Title name
+      name = "Kit's Blog"
+      # You can add extra information before the name (HTML format is supported), such as icons
+      pre = ""
+      # You can add extra information after the name (HTML format is supported), such as icons
+      post = ""
+      # Whether to use typeit animation for title name
+      typeit = false
+
+  # Footer config
+  [params.footer]
+    enable = true
+    # Custom content (HTML format is supported)
+    custom = ""
+    # Whether to show Hugo and theme info
+    hugo = false
+    # Whether to show copyright info
+    copyright = true
+    # Whether to show the author
+    author = true
+    # Site creation year
+    since = 2024
+    # Public network security only in China (HTML format is supported)
+    gov = ""
+    # ICP info only in China (HTML format is supported)
+    icp = ""
+    # License info (HTML format is supported)
+    license = ""
+
+  # Page config
+  [params.page]
+    # Whether to enable the author's avatar
+    authorAvatar = false
+    # Whether to show the last update time
+    lastUpdated = true
+    # Whether to show the reading time
+    readingTime = true
+    # Whether to show the word count
+    wordCount = true
+
+    # Table of Contents config
+    [params.page.toc]
+      # Whether to enable the table of contents
+      enable = true
+      # Whether to keep the static table of contents in front of the post
+      keepStatic = false
+      # Whether to make the table of contents automatically collapse
+      auto = true
+      # FixIt 0.2.13 | NEW Position of the table of contents ("left" or "right")
+      position = "right"
+
+    # Code config
+    [params.page.code]
+      # Whether to show the copy button of the code block
+      copy = true
+      # Maximum number of lines of displayed code by default
+      maxShownLines = 20
+
+  # Social share links
+  [params.share]
+    enable = true
+    Twitter = true
+    Facebook = false
+    Linkedin = false
+    Reddit = true
+    HackerNews = true
+
+  # Search config
+  [params.search]
+    enable = true
+    # Type of search engine ("lunr", "algolia", "fuse")
+    type = "fuse"
+    # Max index length of the chunked content
+    contentLength = 4000
+    # Placeholder of the search bar
+    placeholder = ""
+    # Max number of results length
+    maxResultLength = 10
+    # Snippet length of the result
+    snippetLength = 30
+    # HTML tag name of the highlight part in results
+    highlightTag = "em"
+    # Whether to use the absolute URL based on the baseURL in search index
+    absoluteURL = false
+    [params.search.fuse]
+      # FixIt 0.2.17 | NEW https://fusejs.io/api/options.html
+      isCaseSensitive = false
+      minMatchCharLength = 2
+      findAllMatches = false
+      location = 0
+      threshold = 0.3
+      distance = 100
+      ignoreLocation = false
+      useExtendedSearch = false
+      ignoreFieldNorm = false
+
+# Menu config
 [menu]
   [[menu.main]]
+    identifier = "posts"
     name = "Posts"
     url = "/posts/"
     weight = 1
+    [menu.main.params]
+      icon = "fa-solid fa-file-lines"
+
   [[menu.main]]
+    identifier = "archives"
     name = "Archive"
     url = "/archives/"
     weight = 2
+    [menu.main.params]
+      icon = "fa-solid fa-archive"
+
   [[menu.main]]
+    identifier = "search"
     name = "Search"
     url = "/search/"
     weight = 3
+    [menu.main.params]
+      icon = "fa-solid fa-magnifying-glass"
 
-[outputs]
-  home = ["HTML", "RSS", "JSON"]
-
+# Markup config
 [markup]
+  # Syntax highlighting config
   [markup.highlight]
     style = "monokai"
     lineNos = true
     lineNumbersInTable = false
+    noClasses = false
+  # Goldmark is from Hugo 0.60 the default library used for Markdown
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.renderer]
+      # Whether to use HTML tags directly in the document
+      unsafe = true
+  # Table of contents settings
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
+
+# Output formats
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
