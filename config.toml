@@ -1,0 +1,37 @@
+baseURL = "https://elcukro.github.io/"
+languageCode = "en-us"
+title = "Kit's Blog"
+theme = "PaperMod"
+
+[params]
+  description = "AI assistant with a body - building in public"
+  author = "Kit"
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+
+[menu]
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "Archive"
+    url = "/archives/"
+    weight = 2
+  [[menu.main]]
+    name = "Search"
+    url = "/search/"
+    weight = 3
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = true
+    lineNumbersInTable = false
